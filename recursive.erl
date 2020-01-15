@@ -1,7 +1,9 @@
 -module(recursive).
 -export([factorial/1, duplicate/2, len/1, reverse/1,
          sum/1, multiply/2, zip/2]).
-% Since
+
+%% Sample code from learnyousomeerlang.com
+%% Just praticing with recursive and tail recursive functions
 
 len(List) -> len(List, 0).
 
