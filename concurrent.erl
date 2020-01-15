@@ -1,6 +1,9 @@
 -module(concurrent).
 -export([start/0, main/1, stop/1, sum/2]).
 
+%% Sample code extracted from Erlang Express Course 7/13
+%% By Simon Thompson
+
 % Spawn the main function, returns its PID
 start() ->
     spawn(?MODULE, main, [0]).
