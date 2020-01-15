@@ -1,6 +1,10 @@
 -module(tree).
 -export([empity/0, lookup/2, insert/3]).
 
+%% Sample code from learnyousomeerlang.com
+%% Changed some things here and there
+%% And added comments for my better understanding
+
 empity() -> {node, "nil"}.
 
 insert(Key, Val, {node, "nil"}) ->
