@@ -10,12 +10,6 @@ len(List) -> len(List, 0).
 len([], Counter) -> Counter;
 len([_|Tail], Counter) -> len(Tail, Counter + 1).
 
-factorial(Number) -> factorial(Number, 1).
-
-factorial(0, Accumulator) -> Accumulator;
-factorial(Number, Accumulator) when Number > 0 ->
-    factorial(Number - 1, Number * Accumulator).
-
 duplicate(Number, Counter) -> duplicate(Number, Counter, []).
 
 duplicate(_, 0, List) -> List;
@@ -28,8 +22,8 @@ reverse([Head|Tail],RList) -> reverse(Tail, [Head|RList]).
 
 sum(List) -> sum(List, 0).
 
-sum([], Number) -> Number;
-sum([Head|Tail], Number) -> sum(Tail, Number + Head).
+sum([], Accumulator) -> Accumulator;
+sum([Head|Tail], Accumulator) -> sum(Tail, Accumulator + Head).
 
 multiply(List,Number) -> [Element * Number || Element <-  List].
 
@@ -39,5 +33,11 @@ zip([],_, Accumulator) -> Accumulator;
 zip(_,[], Accumulator) -> Accumulator;
 zip([H1|T1], [H2|T2], Accumulator) -> 
     zip(T1, T2, [{H1, H2}|Accumulator]).
+
+factorial(Number) -> factorial(Number, 1).
+
+factorial(0, Accumulator) -> Accumulator;
+factorial(Number, Accumulator) when Number > 0 ->
+    factorial(Number - 1, Number * Accumulator).
 
 
