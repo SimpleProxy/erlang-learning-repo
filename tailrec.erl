@@ -3,6 +3,11 @@
 
 %% Tail recursive code examples
 
+reverse(List) -> reverse(List,[]).
+
+reverse([],FinalList) -> FinalList;
+reverse([Hd|Tl], List) -> reverse(Tl, [Hd|List]).
+
 %% Helper function (interface), for a simpler call
 sum(List) -> sum(List, 0).
 
@@ -27,3 +32,8 @@ average(List) -> average(List, 0, 0).
 average([], Sum, Len) -> Sum/Len;
 average([H|T], Sum, Len) -> average(T, Sum + H, Len + 1).
 
+%% Creates a list where all the elements are the same
+duplicate(Number, Times) -> duplicate(Number, Times, []).
+
+duplicate(_, 0, List) -> List;
+duplicate(Number, Times, List) -> duplicate(Number, Times - 1, [Number|List]).
