@@ -1,9 +1,22 @@
+%%%------------------------------------------------------------------
+%%% Code from learnyousomeerlang.com
+%%%------------------------------------------------------------------
+%%% Description module tree
+%%%------------------------------------------------------------------
+%%% empity()
+%%%     return a empity node
+%%%------------------------------------------------------------------
+%%% lookup(Key, Tree)
+%%%     return the value stored under the key Key inside the
+%%%     tree Tree
+%%%------------------------------------------------------------------
+%%% insert(Key, Val, Tree)
+%%%     return a new tree, just like Tree, with a new node with
+%%%     the key Key and the value Val
+%%%------------------------------------------------------------------
+
 -module(tree).
 -export([empity/0, lookup/2, insert/3]).
-
-%% Sample code from learnyousomeerlang.com
-%% Changed some things here and there
-%% And added comments for my better understanding
 
 empity() -> {node, "nil"}.
 

@@ -1,7 +1,26 @@
--module(tailrec).
--export([sum/1, len/1, average/1]).
+%%%------------------------------------------------------------------
+%%% Description module tailrec
+%%%------------------------------------------------------------------
+%%% Tail recursive examples
+%%%------------------------------------------------------------------
+%%% sum(List)
+%%%     return the sum of elements in the list
+%%%------------------------------------------------------------------
+%%% len(List)
+%%%     return the lenght of a list
+%%%------------------------------------------------------------------
+%%% average(List)
+%%%     retunr the list's average value
+%%%------------------------------------------------------------------
+%%% duplicate(Len, Num)
+%%%     return a list of lenght Len where all the elements are Num
+%%%------------------------------------------------------------------
+%%% reverse(List)
+%%%     return a List reversed
+%%%------------------------------------------------------------------
 
-%% Tail recursive code examples
+-module(tailrec).
+-export([sum/1, len/1, average/1, duplicate/2, reverse/1]).
 
 reverse(List) -> reverse(List,[]).
 
