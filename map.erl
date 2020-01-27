@@ -12,7 +12,7 @@
 %%%------------------------------------------------------------------
 
 -module(map).
--export([map/2, filter/2, fold/3]).
+-export([map/2, filter/2, fold/3, reverse/1, mapf/2, filterf/2]).
 
 map(_Fun, []) -> [];
 map(Fun, [Hd|Tl]) -> [Fun(Hd)|map(Fun, Tl)].
@@ -29,9 +29,29 @@ filter(Fun, [Hd|Tl], Acc) ->
         false -> filter(Fun, Tl, Acc)
     end.
 
-%% Interface function that calls the internal fold function.
-% fold(Func, List) -> fold(Func, List, []).
-
-%% Internal fold.
+%% fold takes 3 arguments, a function to work on the list, which is the second
+%% argument, and an accumulator
 fold(_Func, [], Acc) -> Acc;
 fold(Func, [Hd|Tl], Acc) -> fold(Func, Tl, Func(Hd, Acc)).
+
+%% In fact, many functions can use fold to do their jobs
+
+%% Invert a list using fold
+reverse(List) -> fold(fun(Element, Acc) -> [Element|Acc] end, List, []).
+
+%% maps a list using fold
+mapf(Func, List) ->
+    reverse(fold(fun(Element, Acc) -> [Func(Element)|Acc] end,
+                                      List,
+                                      [])).
+
+%% filter using fold
+filterf(Func, List) ->
+    InternalF = fun(Element, Acc) ->
+                        case Func(Element) of
+                            true -> [Element|Acc];
+                            false -> Acc
+                        end
+                end,
+    reverse(fold(InternalF, List, [])).
+
