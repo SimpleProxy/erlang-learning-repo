@@ -40,12 +40,19 @@ fold(Func, [Hd|Tl], Acc) -> fold(Func, Tl, Func(Hd, Acc)).
 reverse(List) -> fold(fun(Element, Acc) -> [Element|Acc] end, List, []).
 
 %% maps a list using fold
+%% Defines, and pass to fold, a simple function that only prepends an element 
+%% to the given list after passing it to the given function
 mapf(Func, List) ->
-    reverse(fold(fun(Element, Acc) -> [Func(Element)|Acc] end,
-                                      List,
-                                      [])).
+    reverse(fold(
+              fun(Element, Acc) -> [Func(Element)|Acc] end,
+              List,
+              [])).
 
-%% filter using fold
+%% Filter using fold
+%% A internal helper function is declared just as in filter/2
+%% Fold uses this helper function which uses the given function to select
+%% the right elements of the list, at the end a list is returned to
+%% reverse/1 then inverted and finally is returned to the caller
 filterf(Func, List) ->
     InternalF = fun(Element, Acc) ->
                         case Func(Element) of
