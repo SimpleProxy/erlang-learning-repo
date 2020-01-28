@@ -20,7 +20,8 @@
 %%%------------------------------------------------------------------
 
 -module(tailrec).
--export([sum/1, len/1, average/1, duplicate/2, reverse/1]).
+-export([reverse/1, sum/1, len/1, average/1,
+         duplicate/2, factorial/1]).
 
 reverse(List) -> reverse(List,[]).
 
@@ -56,3 +57,8 @@ duplicate(Number, Times) -> duplicate(Number, Times, []).
 
 duplicate(_, 0, List) -> List;
 duplicate(Number, Times, List) -> duplicate(Number, Times - 1, [Number|List]).
+
+factorial(Number) -> factorial(Number, 1).
+
+factorial(0, Acc) -> Acc;
+factorial(Number, Acc) -> factorial(Number - 1, Acc * Number).
