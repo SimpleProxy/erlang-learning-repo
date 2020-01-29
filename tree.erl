@@ -67,5 +67,25 @@ lookup(Key, {node, {NodeKey, _Val, Smaller, _Larger}})
 lookup(Key, {node, {_Key, _Val, _Smaller, Larger}}) ->
     lookup(Key, Larger).
 
-hasvalue(_Val, _Tree) -> notimplemented.
+%% hasvalue, is a interface function similar to lookup
+%% but instead of searching for a key it searches for a value
+%% in the given tree
+hasvalue(Val, Tree) ->
+    try internal_has_val(Val, Tree) of
+        false -> false
+    catch
+        true -> true
+    end.
+
+%% Base case, return false if it reaches a nil node
+internal_has_val(_Val, {node, "nil"}) ->
+    false;
+%% In case the value is found true will immediately be returned
+internal_has_val(Val, {node, {_Key, Val,_Smaller, _Larger}}) ->
+    throw(true);
+%% In case the valeu has not be found yet continues the search
+%% in both directions
+internal_has_val(Val, {node, {_Key, _Val, Smaller, Larger}}) ->
+    internal_has_val(Val, Smaller),
+    internal_has_val(Val, Larger).
 
