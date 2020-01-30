@@ -6,8 +6,10 @@
 
 %% go starts a process, send it a message and waits for the answer
 go() ->
-    Pid = spawn(echo, loop, []),
-    Pid ! {self(), hello},
+    % spawn takes 3 arguments
+    % the module name, the function to spawn and its arguments
+    Pid = spawn(?MODULE, loop, []),
+    Pid ! {self(), hello}, % the atom hello is the messege
     receive
         {Pid, Msg} ->
             io:format("~w~n",[Msg])
