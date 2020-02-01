@@ -10,6 +10,24 @@
 %%%     return the resulting list with the elements from the list
 %%%     lst filtered by the function fun
 %%%------------------------------------------------------------------
+%%% filter(fun, lst)
+%%%     return a list with the elements from lst filtered by the
+%%%     funtcion fun
+%%%------------------------------------------------------------------
+%%% fold(fun, lst, acc)
+%%%     return the accumulator acc which contains the result of
+%%%     passing all elements of lst as arguments to the function fun.
+%%%     The final result can either be a list or  single value.
+%%%------------------------------------------------------------------
+%%% mapf(fun, lst)
+%%%  return a list where all the elements of lst passed through the
+%%%  function fun. Using fold/3 in its internals.
+%%%------------------------------------------------------------------
+%%% filterf(fun, lst)
+%%%     return a new list with the elements filtered from lst by the
+%%%     function fun. Using filterf/2 as a interface to fold/3.
+%%%------------------------------------------------------------------
+%%%
 
 -module(map).
 -export([map/2, filter/2, fold/3, reverse/1, mapf/2, filterf/2]).
