@@ -18,11 +18,12 @@
 %%% reverse(List)
 %%%     return a List reversed
 %%%------------------------------------------------------------------
-%%%TODO: add tail recursive fibonacci in this module
+%%%
 
 -module(tailrec).
 -export([reverse/1, sum/1, len/1, average/1,
-         higher/1, duplicate/2, factorial/1]).
+         higher/1, duplicate/2]).
+-export([factorial/1, fibonacci/1]).
 
 reverse(List) -> reverse(List,[]).
 
@@ -67,7 +68,19 @@ duplicate(Number, Times) -> duplicate(Number, Times, []).
 duplicate(_, 0, List) -> List;
 duplicate(Number, Times, List) -> duplicate(Number, Times - 1, [Number|List]).
 
+%% Interface function to factorial/2
 factorial(Number) -> factorial(Number, 1).
 
 factorial(0, Acc) -> Acc;
 factorial(Number, Acc) -> factorial(Number - 1, Acc * Number).
+
+%% Interface function to fibonacci/3
+%% fibonacci/1 receives a number as its argument, this is the nth number in the
+%% fibonacci sequence
+fibonacci(N) -> fibonacci(1, 1, N).
+
+fibonacci(_N2, _N1, Nth) when Nth < 0 -> undefined;
+fibonacci(_N2, N1, 0)                 -> {ok, N1};
+fibonacci(_N2, N1, 1)                 -> {ok, N1};
+fibonacci(N2, N1, Nth)                -> fibonacci(N2, N1 + N2, Nth - 1).
+
