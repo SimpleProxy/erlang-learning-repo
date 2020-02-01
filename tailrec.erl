@@ -18,10 +18,11 @@
 %%% reverse(List)
 %%%     return a List reversed
 %%%------------------------------------------------------------------
+%%%TODO: add tail recursive fibonacci in this module
 
 -module(tailrec).
 -export([reverse/1, sum/1, len/1, average/1,
-         duplicate/2, factorial/1]).
+         higher/1, duplicate/2, factorial/1]).
 
 reverse(List) -> reverse(List,[]).
 
@@ -51,6 +52,14 @@ average(List) -> average(List, 0, 0).
 
 average([], Sum, Len) -> Sum/Len;
 average([H|T], Sum, Len) -> average(T, Sum + H, Len + 1).
+
+%% scan a list and returns its igher value
+%% FIXME: if all elements in the list are negative the return will be 0
+higher(List) -> higher(List, 0).
+
+higher([], Acc) -> Acc;
+higher([A | Tail], Acc) when A > Acc -> higher(Tail, A);
+higher([_A | Tail], Acc) -> higher(Tail, Acc).
 
 %% Creates a list where all the elements are the same
 duplicate(Number, Times) -> duplicate(Number, Times, []).
