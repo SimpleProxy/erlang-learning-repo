@@ -24,18 +24,18 @@
 %%%------------------------------------------------------------------
 
 -module(state).
--export([init/0, main_loop/1, store/2, take/2, stop/1]).
+-export([init/0, main_loop/1]).
+-export([store/2, take/2, stop/1]).
 
 init() ->
-    Pid = spawn(?MODULE, main_loop,[]),
-    Pid ! {self(), ok}.
+    spawn(?MODULE, main_loop,[[]]).
 
 main_loop(StoredState) ->
     receive
         {Pid, stop} ->
             Pid ! ok;
         {Pid, {store, NewState}} ->
-            Pid ! ok,
+            Pid ! {self(), {ok, stored}},
             main_loop([NewState | StoredState]);
         {Pid, {take, State}} ->
             case lists:member(State, StoredState) of
