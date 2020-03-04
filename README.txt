@@ -6,3 +6,16 @@
     even help someone looking for simple code to learn something
     new too.
 
+
+     bool.erl
+     concurrent.erl
+     echo.erl
+     exits.erl
+     fibonacci.erl
+     map.erl
+     recursive.erl
+     road.txt
+     sort.erl
+     state.erl
+     tailrec.erl
+     tree.erl
