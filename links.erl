@@ -31,3 +31,9 @@ init() -> spawn (?MODULE, proc, []).
 
 proc () -> timer:sleep(3000),
            exit(time_out).
+
+%%% System Process are normal processes, but they can convert exit code to
+%%% normal messages. Calling process_flag(trap_exit, true) in a running process
+%%% does the job.
+%%% This will be usefull to read messages from processes that failed or exited
+%%% as we may want to restart the process again.
