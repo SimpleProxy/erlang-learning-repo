@@ -18,7 +18,9 @@
 %%% reverse(List)
 %%%     return a List reversed
 %%%------------------------------------------------------------------
-%%%
+%%% fibonacci(N)
+%%%     return the Nth number of the fibnocci sequence
+%%%------------------------------------------------------------------
 
 -module(tailrec).
 -export([reverse/1, sum/1, len/1, average/1,
